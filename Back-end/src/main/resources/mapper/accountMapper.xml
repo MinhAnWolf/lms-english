@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.cms_atn.mapper.accountMapper">
+	<select id="getAll"
+		parameterType="com.service.cms_atn.model.Account"
+		resultType="com.service.cms_atn.model.Account">
+		{call
+		sp_page_account(#{page},#{limit},#{username},#{levels})}
+	</select>
+
+	<select id="countRecored" resultType="Integer">
+	<![CDATA[
+		SELECT COUNT(*) FROM ACCOUNT
+		]]>
+	</select>
+
+	<select id="login"
+		resultType="com.service.cms_atn.model.Account"
+		parameterType="com.service.cms_atn.model.Account">
+	<![CDATA[
+		SELECT * FROM ACCOUNT
+		WHERE username = #{username} and password = #{password}	]]>
+	</select>
+
+	<insert id="register"
+		parameterType="com.service.cms_atn.model.Account">
+		<![CDATA[
+			INSERT INTO ACCOUNT
+			(id,password,username,levels,role,created)
+			VALUES
+			(#{id},#{password},#{username},#{levels},#{role},#{created})
+		]]>
+	</insert>
+
+	<update id="update"
+		parameterType="com.service.cms_atn.model.Account">
+		<![CDATA[
+		UPDATE ACCOUNT
+		SET username = #{username}, levels = #{levels} 
+		WHERE id = #{id}
+		]]>
+	</update>
+
+	<delete id="delete" parameterType="String">
+		<![CDATA[
+			DELETE FROM ACCOUNT WHERE id = #{id};			
+		]]>
+	</delete>
+
+	<select id="countUsername" parameterType="String"
+		resultType="Integer">
+		<![CDATA[
+		SELECT COUNT(*) FROM ACCOUNT
+		WHERE username = #{username}
+		]]>
+	</select>
+
+	<update id="changePassword"
+		parameterType="com.service.cms_atn.model.Account">
+		<![CDATA[
+		UPDATE ACCOUNT
+		SET password = #{password} 
+		WHERE id = #{id}
+		]]>
+	</update>
+
+	<select id="getById"
+		resultType="com.service.cms_atn.model.Account"	
+		parameterType="String">
+	<![CDATA[
+			SELECT username,role,levels FROM ACCOUNT
+			WHERE #{id} = id
+	]]>
+	</select>
+
+</mapper>

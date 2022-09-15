@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.cms_atn.mapper.lessonMapper">
+	<select id="getAll"
+		parameterType="com.service.cms_atn.model.Lesson"
+		resultType="com.service.cms_atn.model.Lesson">
+		SELECT * FROM LESSON
+		<where>
+			<if test="unitId != 0">
+				AND unit_id = #{unitId}
+			</if>
+		</where>
+	</select>
+
+	<select id="getByBookAndUnit"
+		parameterType="com.service.cms_atn.model.Lesson"
+		resultType="com.service.cms_atn.model.Lesson">
+		SELECT * FROM LESSON
+		<where>
+			<if test="lessonId != 0">
+				AND lesson_id = #{lessonId}
+			</if>
+			<if test="unitId != 0">
+				AND unit_id = #{unitId}
+			</if>
+			<if test="bookId != 0">
+				AND book_id = #{bookId}
+			</if>
+		</where>
+	</select>
+
+	<insert id="create"
+		parameterType="com.service.cms_atn.model.Lesson">
+		<![CDATA[
+			INSERT INTO LESSON (unit_id,
+						   book_id,
+						   name,
+						   pages,
+						   videos,
+						   audios)
+			VALUES (#{unitId},
+					#{bookId},
+					#{name},
+					#{pages},
+					#{videos},
+					#{audios})
+		]]>
+	</insert>
+
+	<delete id="delete"
+		parameterType="com.service.cms_atn.model.Lesson">
+		<![CDATA[
+			DELETE FROM LESSON 
+			WHERE lesson_id = #{lessonId}
+		]]>
+	</delete>
+</mapper>

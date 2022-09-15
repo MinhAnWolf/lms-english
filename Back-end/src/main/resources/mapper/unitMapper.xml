@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.cms_atn.mapper.unitMapper">
+
+	<select id="getAll"
+		parameterType="com.service.cms_atn.model.Unit"
+		resultType="com.service.cms_atn.model.Unit">
+		SELECT * FROM UNIT
+		<where>
+			<if test="bookId != 0">
+				AND book_id = #{bookId}
+			</if>
+		</where>
+	</select>
+
+	<insert id="create"
+		parameterType="com.service.cms_atn.model.Unit">
+		INSERT INTO UNIT (name,
+							image,
+							book_id)
+				VALUES (#{name},
+						#{image},
+						#{bookId})
+	</insert>
+	
+	<update id="update" 
+		parameterType="com.service.cms_atn.model.Unit">
+		UPDATE UNIT SET name = #{name},
+						image = #{image},
+						book_id = #{bookId}
+				WHERE unit_id = #{unitId}
+	</update>
+	
+	<delete id="delete" 
+		parameterType="com.service.cms_atn.model.Unit">
+		DELETE FROM UNIT
+		WHERE unit_id = #{unitId}
+	</delete>
+
+</mapper>
