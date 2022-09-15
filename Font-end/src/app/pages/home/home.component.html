@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12 mb-4">
+        <ngb-carousel *ngIf="images">
+            <ng-template ngbSlide *ngFor="let item of images">
+                <div class="picsum-img-wrapper" style="height: 240px; border-radius: 10px; overflow: hidden; 
+                    background-image: linear-gradient(100deg,rgb(20, 140, 187),rgb(224, 224, 224) 100%)">
+                    <img [src]="item.image" alt="Random first slide" class="h-100 float-end me-5">
+                </div>
+                <div class="text-light" style="position: absolute; top: 50px; left: 180px;">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.content}}</p>
+                    <a target="_blank" class="btn btn-outline-light px-3" 
+                        href="https://www.facebook.com/ATN-English-Center-106406251340010" 
+                        style="border-radius: 30px; font-size: 10pt;">{{item.contentBtn}}</a>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <h4>Các phần học</h4>
+    <div *ngFor="let item of subjects" class="col-md-3">
+        <app-card-item [item]="item" [routing]="routing"></app-card-item>
+    </div>
+</div>

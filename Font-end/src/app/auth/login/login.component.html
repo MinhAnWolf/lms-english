@@ -1,0 +1,36 @@
+<section class="vh-100 gradient-custom"
+    style="background-image: url('https://images.unsplash.com/photo-1548425083-4261538dbca4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+           background-size: 100%;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem; position: relative;">
+                    <div class="card-body p-5">
+                        <div class="mb-md-5 mt-md-4">
+                            <form [formGroup]="formLogin" *ngIf=""> 
+                                <h2 class="fw-bold mb-2 text-uppercase mb-4">Đăng nhập</h2>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" for="typeEmailX">Tài khoản</label>
+                                    <input formControlName="username" type="text" id="typeEmailX"
+                                        class="form-control form-control-lg" />
+                                    <small *ngIf="isSubmit && f['username'].errors" class="text-danger">Vui lòng nhập
+                                        tài khoản!</small>
+                                </div>
+                                <div class="form-outline form-white mb-5">
+                                    <label class="form-label" for="typePasswordX">Mật khẩu</label>
+                                    <input formControlName="password" type="password" id="typePasswordX"
+                                        class="form-control form-control-lg" />
+                                    <small *ngIf="isSubmit && f['password'].errors" class="text-danger">Vui lòng nhập
+                                        mật khẩu!</small>
+                                </div>
+                                <button (click)="submit()" [ngClass]="{'disabled': loading}" class="btn btn-outline-light btn-lg px-5">Đăng nhập</button>
+                                <div *ngIf="loading" class="spinner-border" style="font-size: 10pt; position: absolute; bottom: 14px; right: 14px;" role="status"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

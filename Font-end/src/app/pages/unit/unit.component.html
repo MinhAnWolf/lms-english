@@ -1,0 +1,9 @@
+<div class="row">
+    <h5>
+        <a href="" class="text-dark" style="text-decoration: none;">Home</a>
+        <a href="/book?ids={{ids}}" class="text-dark" style="text-decoration: none;"> / Book</a>
+    </h5>
+    <div *ngFor="let item of units" class="col-md-3">
+        <app-card-item [item]="item" [routing]="routing"></app-card-item>
+    </div>
+</div>

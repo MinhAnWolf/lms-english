@@ -1,0 +1,59 @@
+<div class="row mt-3">
+    <div class="col-md-4 mt-4">
+        <h4 style="margin-bottom: 20px;">Thông tin môn học</h4>
+        <form [formGroup]="form">
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tên môn học</mat-label>
+                    <input formControlName="name" matInput placeholder="Nhập tên môn học">
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Hình ảnh</mat-label>
+                    <input formControlName="image" matInput placeholder="Nhập url hình ảnh">
+                </mat-form-field>
+            </div>
+            
+           
+
+            <button class="btn btn-outline-success" (click)="createSubject()">Create</button>
+            <button class="btn btn-outline-primary mx-2" (click)="updateSubject()">Update</button>
+            <button class="btn btn-outline-primary mx-2" (click)="deleteSubject()">Delete</button>
+            <button class="btn btn-outline-danger" (click)="reset()">Clear</button>
+        </form>
+    </div>
+    <div class="col-md-8 mt-4">
+        <div class="w-100 row mb-3">
+                <form class="d-flex w-100" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="border-radius: 20px;">
+                </form>
+           
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tên môn học</th>
+                    <th scope="col">Ảnh bìa</th>
+                    <th scope="col" class="text-end">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of SUBJECTS; index as i">
+                    <td>{{item.subjectId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.image}}</td>
+                   
+                    <td class="align-middle text-center">
+                        <span class="text-info m-cursor" >
+                          <a (click)="edit(item)">Chỉnh sửa</a> 
+                        </span>
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

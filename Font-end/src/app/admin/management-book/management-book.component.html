@@ -1,0 +1,77 @@
+<div class="row mt-3">
+    <div class="col-md-4 mt-4">
+        <h4 style="margin-bottom: 20px;">Thông tin sách</h4>
+        <form [formGroup]="form">
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Môn học</mat-label>
+                    <mat-select formControlName="subjectId" name="food">
+                        <mat-option *ngFor="let item of SUBJECTS" [value]="item.subjectId">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tên sách</mat-label>
+                    <input formControlName="name" matInput placeholder="Nhập tên sách">
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Hình ảnh</mat-label>
+                    <input formControlName="image" matInput placeholder="Nhập url hình ảnh">
+                </mat-form-field>
+            </div>
+            <div class="mb-3">
+                <label>Upload file PDF <span class="text-danger">*</span></label> <br>
+                <label for="uploadPDF" class="btn btn-danger px-5 me-4"><span>Upload pdf</span></label>
+                <label *ngIf="filesPDF != null">{{filesPDF.name}}</label>
+                <input (change)="selectOnPDF($event)" type="file" class="form-control d-none" id="uploadPDF" multiple>
+            </div>
+            <hr>
+            <button class="btn btn-success" (click)="createBook()">Create</button>
+            <button class="btn btn-outline-primary mx-2" (click)="updateBook()">Update</button>
+            <button class="btn btn-outline-danger mx-2" (click)="deleteBook()">Delete</button>
+            <button class="btn btn-outline-dark" (click)="reset()">Clear</button>
+        </form>
+    </div>
+    <div class="col-md-8 mt-4">
+        <div class="w-100 row mb-3">
+            <form class="d-flex w-100" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    style="border-radius: 20px;">
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id Sách</th>
+                    <th scope="col">Tên môn học</th>
+                    <th scope="col">Tên sách</th>
+                    <th scope="col">Ảnh bìa</th>
+                    <th scope="col" class="text-end">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of BOOKS; index as i">
+                    <td>{{item.bookId}}</td>
+                    <td>
+                        <div *ngFor="let SUBJECT of SUBJECTS">
+                            <p *ngIf="SUBJECT.subjectId == item.subjectId">{{SUBJECT.name}}</p>
+                        </div>
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.image}}</td>
+
+                    <td class="align-middle text-end">
+                        <a (click)="edit(item)" class="btn"><span class="material-icons">
+                                edit
+                            </span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

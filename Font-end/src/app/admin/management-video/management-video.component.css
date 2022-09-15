@@ -1,0 +1,20 @@
+.btn-upload {
+    width: 160px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.box-video {
+    position: relative;
+}
+
+.video {
+    background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%);
+}
+
+.border-radius-6-overflow-hidde {
+    border-radius: 6px;
+    overflow: hidden;
+}

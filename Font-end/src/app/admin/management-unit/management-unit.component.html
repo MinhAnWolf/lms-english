@@ -1,0 +1,57 @@
+<div class="row mt-3">
+    <div class="col-md-4 mt-4">
+        <h4 style="margin-bottom: 20px;">Thông tin môn bài học</h4>
+        <form [formGroup]="FormUnit">
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Select Book</mat-label>
+                    <mat-select formControlName="bookId">
+                        <mat-option *ngFor="let book of books" [value]="book.bookId">
+                            {{book.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tên Unit</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Image URL</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="image">
+                </mat-form-field>
+            </div>
+            <button class="btn btn-success" (click)="onSubmit()">Thêm</button>
+            <button class="btn btn-outline-primary mx-2" (click)="update()">Chỉnh sửa</button>
+            <button class="btn text-danger float-end" (click)="clear()">Làm mới</button>
+        </form>
+    </div>
+    <div class="col-md-8 mt-4">
+        <form class="d-flex w-100 mb-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                style="border-radius: 20px;">
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">BOOK</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">IMAGE URL</th>
+                    <th scope="col" class="text-end">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of units">
+                    <th scope="row">{{item.unitId}}</th>
+                    <td>{{item.bookId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.image}}</td>
+                    <td class="text-end">
+                        <a (click)="edit(item)" class="me-2 text-decoration-none">edit</a>
+                        <a (click)="remove(item)" class="text-danger text-decoration-none">remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

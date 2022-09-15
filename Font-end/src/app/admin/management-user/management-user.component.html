@@ -1,0 +1,107 @@
+<div class="row mt-3">
+    <div class="col-md-4 mt-4">
+        <h4 style="margin-bottom: 20px;">Thông tin người dùng</h4>
+        <form [formGroup]="formRegister">
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tài khoản</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="username">
+                </mat-form-field>
+                <span *ngIf="">at least 6 characters</span>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Chọn sách</mat-label>
+                    <mat-select formControlName="levels">
+                        <mat-option *ngFor="let item of books" [value]="item.bookId">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Mật khẩu</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nhập lại mật khẩu</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirm">
+                </mat-form-field>
+            </div>
+
+            <button class="btn btn-success" (click)="register()">Thêm</button>
+            <button class="btn btn-outline-primary mx-2" (click)="update()">Cập nhật</button>
+            <button class="btn btn-outline-danger" (click)="clear()">Mới</button>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-8 mt-4">
+        <div class="row">
+            <div class="col-12">
+                <form class="d-flex w-100" role="search">
+                    <input (keyup)="search($event)" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" style="border-radius: 20px;">
+                </form>
+            </div>
+        </div>
+        <table class="table text-center mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Create Date</th>
+                    <th scope="col">Update Password</th>
+                    <th scope="col" class="text-end">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of arrAccount; index as j">
+                    <td>{{i.id}}</td>
+                    <td>{{i.username}} </td>
+                    <td>{{i.levels}}</td>
+                    <td>
+                        {{i.created}}
+                    </td>
+                    <td>
+                        <a (click)="changePassword(i)" class="text-decoration-none text-primary btn"
+                            style="margin: -10px;">
+                            <span class="material-icons">manage_accounts</span></a>
+                    </td>
+                    <td class="text-end">
+                        <a class="btn text-primary" style="margin: -10px;" (click)="edit(i)"><span
+                                class="material-icons">edit</span></a>
+                        <a class="btn text-danger" style="margin: -10px;" (click)="callModalDelete(i)"><span
+                                class="material-icons">delete</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-2">
+                <mat-form-field>
+                    <mat-label>Show</mat-label>
+                    <mat-select [(ngModel)]="pageSize">
+                        <mat-option *ngFor="let i of arrPageSize" [value]="i" (click)="onPageSizeChange()">
+                            {{i}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-2 py-3 text-end">
+                <span>Page {{pageNum}} Of {{pageSize}}</span>
+            </div>
+            <div class="col-8 mt-2">
+                <ngb-pagination class="float-end" (pageChange)="onPageChange($event)" [(page)]="pageNum" [collectionSize]="total"
+                    [maxSize]="5" [pageSize]="pageSize" [rotate]="true"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

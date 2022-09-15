@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 py-3">
+    <div class="container">
+        <a class="navbar-brand" href="">
+            <img src="https://atn.edu.vn/wp-content/uploads/2021/11/logo-atn-v2.png" alt="" width="30" height="30"
+                class="d-inline-block" style="margin-top: -5px;">
+            <span style="font-size: 14pt; color: black; margin-left: 10px;">LMS ATN ENGLISH</span>
+        </a>
+
+        <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+                <a *ngIf="role == 'ADMIN'" href="admin" class="btn text-light me-2"
+                    style="background-color: rgb(255, 102, 0); border-radius: 20px;"><span class="mx-2">Admin</span></a>
+                <a class="btn btn-outline-dark" (click)="logout()"
+                    style="border-radius: 20px;"><span class="mx-2">Đăng
+                        xuất</span></a>
+                <!-- <li *ngIf="token" class="nav-item" ngbDropdown>
+                    <a  class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button">  
+                        {{username}}
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-end">
+                        <a ngbDropdownItem href="#" (click)="logout()">Đăng xuất</a>
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>

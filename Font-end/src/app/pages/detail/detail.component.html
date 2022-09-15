@@ -1,0 +1,55 @@
+<div class="row">
+    <!-- <h5>
+        <a href="" class="text-dark" style="text-decoration: none;">Home</a>
+        <a href="/book?ids={{}}" class="text-dark" style="text-decoration: none;"> / Book</a>
+    </h5> -->
+    <div class="col-md-9">
+        
+        <mat-accordion>
+            <mat-expansion-panel *ngIf="videos != ''" class="text-center">
+                <mat-expansion-panel-header (click)="clearDataSrc()">
+                    <mat-panel-title>Watching</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="ratio ratio-16x9 border" *ngIf="srcVideo != null">
+                    <video controls disabled="true" autoplay #videoPlayer>
+                        <source [src]="srcVideo" type="video/mp4">
+                    </video>
+                </div>
+                <mat-button-toggle-group>
+                    <mat-button-toggle *ngFor="let item of videos; index as i" 
+                        (click)="getVideo(i)" class="px-3">Video {{i+1}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="audios != ''" class="text-center">
+                <mat-expansion-panel-header (click)="clearDataSrc()">
+                    <mat-panel-title>Lestening</mat-panel-title>
+                </mat-expansion-panel-header>
+                <audio controls class="w-100 mb-3" *ngIf="srcAudio != null">
+                    <source [src]="srcAudio" type="audio/mp3">
+                </audio>
+                <mat-button-toggle-group>
+                    <mat-button-toggle *ngFor="let item of audios; index as i" 
+                        (click)="getAudio(i)" class="px-3">{{i+1}} {{item}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="pages != ''" class="mb-3">
+                <mat-expansion-panel-header (click)="clearDataSrc()">
+                    <mat-panel-title>Content</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="row">
+                    <div class="col-md-6 shadow" *ngFor="let item of pages">
+                        <img src="http://localhost:8080/api/learning-atn/lesson/get-image?name={{content}}${{item}}.jpg"
+                            width="100%">
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+    <div class="col-md-3">
+        <h5>Lesson</h5>
+        <div *ngFor="let item of listLesson" class="mb-3">
+            <a class="btn btn-outline-dark d-block" (click)="getLesson(item)">{{item.name}}</a>
+        </div>
+    </div>
+</div>
